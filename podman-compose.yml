@@ -11,8 +11,6 @@ services:
     depends_on:
       - db
       - php
-        # dbコンテナの状態がhealthyになるまで待つ (dbコンテナの準備が完全に終了するまで)
-#        condition: service_healthy
 
   db:
     image: docker.io/library/mysql:8.4.4
@@ -24,15 +22,10 @@ services:
       TZ: Asia/Tokyo
     env_file:
       # Environmental variables
-      # - MYSQL_ROOT_PASSWORD
       - pod/db/variables.env
 
   php:
     build:
-      # Dockerfileを格納するフォルダのパス
       context: ./pod/php
-      # Dockerfileのファイル名
-      # dockerfile: Dockerfile
     volumes:
-      # ./srcフォルダをコンテナ内の/var/www/htmlにマウント
       - ./src:/var/www/html
