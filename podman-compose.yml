@@ -23,10 +23,6 @@ services:
 
   php:
     build:
-      # Dockerfileを格納するフォルダのパス
       context: ./pod/php
-      # Dockerfileのファイル名
-      # dockerfile: Dockerfile
     volumes:
-      # ./srcフォルダをコンテナ内の/var/www/htmlにマウント
       - ./src:/var/www/html
