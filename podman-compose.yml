@@ -6,13 +6,10 @@ services:
       - 8080:80
     volumes:
       - ./src:/var/www/html
-#      - ./upload:/var/www/html/upload
       - ./pod/nginx:/etc/nginx/conf.d
     depends_on:
       - db
       - php
-        # dbコンテナの状態がhealthyになるまで待つ (dbコンテナの準備が完全に終了するまで)
-#        condition: service_healthy
 
   db:
     image: docker.io/library/mysql:9.5.0
@@ -26,8 +23,6 @@ services:
 
   php:
     build:
-      # Dockerfileを格納するフォルダのパス
       context: ./pod/php
     volumes:
-      # ./srcフォルダをコンテナ内の/var/www/htmlにマウント
       - ./src:/var/www/html
