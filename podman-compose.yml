@@ -15,24 +15,19 @@ services:
 #        condition: service_healthy
 
   db:
-    image: docker.io/library/mysql:8.4.4
+    image: docker.io/library/mysql:9.5.0
     ports:
       - 3306:3306
     volumes:
       - ./pod/db/data:/var/lib/mysql
     environment:
       TZ: Asia/Tokyo
-    env_file:
-      # Environmental variables
-      # - MYSQL_ROOT_PASSWORD
-      - pod/db/variables.env
+      MYSQL_ROOT_PASSWORD: password
 
   php:
     build:
       # Dockerfileを格納するフォルダのパス
       context: ./pod/php
-      # Dockerfileのファイル名
-      # dockerfile: Dockerfile
     volumes:
       # ./srcフォルダをコンテナ内の/var/www/htmlにマウント
       - ./src:/var/www/html
