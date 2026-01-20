@@ -9,4 +9,4 @@ create table fish (
 );
 
 insert into fish(fishId, number, name, gender) values (0, "F1_3", "NA", "F");
-insert into fish(fishId, number, name, gender) values (0, "F1_5", "NA", "M");
+insert into fish(fishId, number, name, gender) values (1, "F1_5", "NA", "M");

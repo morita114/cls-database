@@ -2,6 +2,7 @@
 
 <head>
     <title>Database</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 
@@ -22,12 +23,19 @@ $dbh = new PDO('mysql:host=db;dbname=test;charset=utf8', 'root', 'password');
 $query = "SELECT * FROM fish";
 $stmt = $dbh->query($query);
 
+echo '<table>';
 foreach ($stmt as $row) {
-    echo "fishId: " . $row['fishId'] . ", ";
-    echo "number: " . $row['number'] . ", ";
-    echo "name: " . $row['name'] . ", ";
-    echo "gender: " . $row['gender'] . "<br>";
+    echo '<tr>';    // Tableの行を開始
+    
+    // <td></td>タグで列を囲む
+    echo "<td>fishId</td>   <td>{$row['fishId']}</td>";
+    echo "<td>number</td>   <td>{$row['number']}</td>";
+    echo "<td>name</td>     <td>{$row['name']}</td>";
+    echo "<td>gender</td>   <td>{$row['gender']}</td>";
+
+    echo '</tr>';   // Tableの行を終了
 }
+echo '</table>';
 
 ?>
 
