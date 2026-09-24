@@ -8,18 +8,20 @@
 
 <?php
 
+// URLパラメータの取得
 $gender = $_GET['gender'] ?? '';
 
 if ($gender == '') {
     echo '<p>全て表示しています。</p><br>';
-    
-    // リンクを入力ボックスに変更
-    echo '<input type="text" id="genderInput"> のみ ';
-    echo '<input type="button" value="表示" onclick="selectGender()">';
+    echo '<p>';
+    echo '<a href="/fishTable/v2.php?gender=F">メスのみ表示</a>';
+    echo '  /  ';
+    echo '<a href="/fishTable/v2.php?gender=M">オスのみ表示</a><br>';
+    echo '</p>';
 
-    $query = "SELECT * FROM fish";
+    $query = "SELECT * FROM fish";     // QueryにWHEREを追加
 } else {
-    $query = "SELECT * FROM fish WHERE gender = '$gender'";
+    $query = "SELECT * FROM fish WHERE gender = '$gender'";     // QueryにWHEREを追加
     if ($gender == 'F') {
         echo '<p>メスのみ表示しています。</p>';
     } elseif ($gender == 'M') {
@@ -31,7 +33,7 @@ if ($gender == '') {
 }
 
 
-$dbh = new PDO('mysql:host=db;dbname=test;charset=utf8', 'root', 'password');
+$dbh = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', 'password');
 $stmt = $dbh->query($query);
 
 echo '<table>';
@@ -48,13 +50,6 @@ foreach ($stmt as $row) {
 echo '</table>';
 
 ?>
-
-<script type="text/javascript">
-    function selectGender() {
-        const gender = document.getElementById("genderInput").value;
-        window.location.href = "/fishTable/v3.php?gender=" + gender;
-    }
-</script>
 
 </body>
 </html>

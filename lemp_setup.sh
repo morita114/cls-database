@@ -255,7 +255,7 @@ NGINXEOF
 
 # Configure PHP-FPM settings
 configure_php_fpm() {
-    section "PHP-FPM の設定"
+    section "Configure PHP-FPM"
 
     local PHP_INI="/etc/php/${PHP_VERSION}/fpm/php.ini"
 

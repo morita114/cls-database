@@ -24,7 +24,7 @@ $gender = $_GET["gender"];
 
 // PDOオブジェクトの作成
 // dbnameに指定している「test」は各自の設定に合わせて変更してください
-$dbh = new PDO('mysql:host=db;dbname=test;charset=utf8', 'root', 'password');
+$dbh = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', 'password');
 
 
 echo "<h2>PHPでの実装</h2>";
